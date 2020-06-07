@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.hisfy.kakao.homework.repository.CouponRepository">
+
+    <insert id="insertCoupon" parameterType="map">
+        INSERT INTO coupon
+        SET
+          coupon_key = #{couponKey}
+          , create_date = #{createDate}
+          , used = FALSE;
+    </insert>
+
+    <select id="selectUnusedCoupon" resultType="kr.hisfy.kakao.homework.model.CouponModel">
+        SELECT
+            coupon_srl AS couponSrl
+            , coupon_key AS couponKey
+            , create_date AS createDate
+        FROM coupon
+        WHERE issue_date IS NULL
+        ORDER BY coupon_srl ASC
+        LIMIT 1;
+    </select>
+
+    <select id="selectCouponByCouponKey" parameterType="map" resultType="kr.hisfy.kakao.homework.model.CouponModel">
+        SELECT
+            coupon_srl AS couponSrl
+            , coupon_key AS couponKey
+            , create_date AS createDate
+            , issue_date AS issueDate
+            , start_date AS startDate
+            , use_date AS useDate
+            , used AS used
+        FROM coupon
+        WHERE coupon_key = #{couponKey};
+    </select>
+
+    <update id="updateIssueDate" parameterType="map">
+        UPDATE coupon
+        SET
+            issue_date = #{issueDate}
+        WHERE
+            coupon_srl = #{couponSrl};
+    </update>
+
+    <update id="updateUsed" parameterType="map">
+        UPDATE coupon
+        SET
+            used = #{used}
+            , used_date = #{usedDate}
+        WHERE
+            coupon_key = #{couponKey};
+    </update>
+
+    <select id="selectApproachingCoupon" parameterType="map" resultType="kr.hisfy.kakao.homework.model.CouponModel">
+        SELECT
+            coupon_srl AS couponSrl
+            , coupon_key AS couponKey
+            , create_date AS createDate
+            , issue_date AS issueDate
+            , start_date AS startDate
+            , use_date AS useDate
+            , used AS used
+        FROM coupon
+        WHERE end_date = #{endDate}
+            AND used = #{used};
+    </select>
+</mapper>
