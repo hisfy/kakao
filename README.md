@@ -14,7 +14,7 @@
 1. mysql 의 DB를 생성한후 src/main/resources/application.properties 에 넣는다. 
 
 ## 문제 해결 전략
-1. 쿠폰 대량 생성시  CouponController.issueCouponAsync 메소드를 이용한다.
+1. 쿠폰 대량 생성시  CouponController.makeCouponAsync 메소드를 이용한다.
 2. 대량 쿠폰 생성시 DB 지연이 발생할 경우 Constants.COUPON_MASS_INSERT_THREAD_SLEEP 값을 늘린다.
 3. 쿠폰 발생시 리소스 사용을 줄이기 위해 16진수 Hex 값을 바로 2Byte String 으로 변환하였다.
 4. 대량 사용이 되면 NoSQL 이나 Queue 를 도입한다.
