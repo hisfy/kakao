@@ -4,6 +4,7 @@
 ## 개발 환경
 1. Java 1.8.0_251 
 2. SpringBoot 2.1.2 
+3. DB 는 개인 서버의 MySQL 로 임시로 open
 
 ## 실행
 1. boot 실행 : mvn spring-boot:run
