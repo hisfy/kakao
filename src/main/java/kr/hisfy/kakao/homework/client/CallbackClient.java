@@ -23,12 +23,12 @@ public class CallbackClient implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();;
+        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
         requestFactory.setConnectTimeout(connectionTimeout);
         requestFactory.setReadTimeout(readTimeout);
         this.restTemplate = new RestTemplate(requestFactory);
 
-        String clientName = this.getClass().getName();;
+        String clientName = this.getClass().getName();
         log.info("{} client setting", clientName);
         log.info("{} client connectionTimeout = {}", clientName, connectionTimeout);
         log.info("{} client readTimeout = {}", clientName, readTimeout);
