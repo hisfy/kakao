@@ -24,9 +24,9 @@
 테스트 편의상 GET 으로 받을수 있도록 하였다.
 
 ### 쿠폰 생성
-1. GET : /api/coupon?count=1
+1. GET : /api/coupon/make?count=1
 1.1. 한건 발급, count 는 default 1
-2. GET : /api/coupon/async?count=1&callback=http://a.com/coupon/callback
+2. GET : /api/coupon/make/async?count=1&callback=http://a.com/coupon/callback
 1.1. 비동기로 발급, 1,000건 단위로 생성 정보를 POST로 callback 해줌 
 ### 쿠폰 발급
 1. GET : /api/coupon?user=abcd
